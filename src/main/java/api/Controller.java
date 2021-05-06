@@ -24,6 +24,7 @@ public class Controller implements Initializable {
     @FXML private RadioButton companyRadio;
     @FXML private RadioButton internetRadio;
     @FXML private RadioButton commerceRadio;
+    @FXML private RadioButton petRadio;
     @FXML private RadioButton otherRadio;
     @FXML private Button generateButton;
     @FXML private Button langButton;
@@ -57,6 +58,7 @@ public class Controller implements Initializable {
         companyRadio.setToggleGroup(group);
         internetRadio.setToggleGroup(group);
         commerceRadio.setToggleGroup(group);
+        petRadio.setToggleGroup(group);
         otherRadio.setToggleGroup(group);
 
         list.add(Person.NAME.getEng());
@@ -140,6 +142,22 @@ public class Controller implements Initializable {
             box.setItems(list);
         });
 
+        petRadio.setOnAction(event -> {
+            list.clear();
+
+            if (language == 'E') {
+                list.add(Pet.CAT.getEng());
+                list.add(Pet.DOG.getEng());
+            }
+
+            else {
+                list.add(Pet.CAT.getPl());
+                list.add(Pet.DOG.getPl());
+            }
+
+            box.setItems(list);
+        });
+
         otherRadio.setOnAction(event -> {
             list.clear();
 
@@ -170,6 +188,7 @@ public class Controller implements Initializable {
             companyRadio.setText("Company");
             internetRadio.setText("Internet");
             commerceRadio.setText("Commerce");
+            petRadio.setText("Pet");
             otherRadio.setText("Other");
             generateButton.setText("Generate");
             l1.setText("1st category");
@@ -181,6 +200,7 @@ public class Controller implements Initializable {
             companyRadio.setText("Firma");
             internetRadio.setText("Internet");
             commerceRadio.setText("Handel");
+            petRadio.setText("Zwierzątko");
             otherRadio.setText("Inne");
             generateButton.setText("Generuj");
             l1.setText("1. kategoria");
@@ -222,6 +242,11 @@ public class Controller implements Initializable {
             else if (commerceRadio.isSelected()) {
                 String commerce = box.getSelectionModel().getSelectedItem();
                 str = service.generateCommerce(commerce);
+            }
+
+            else if (petRadio.isSelected()) {
+                String pet = box.getSelectionModel().getSelectedItem();
+                str = service.generatePet(pet);
             }
 
             else if (otherRadio.isSelected()) {

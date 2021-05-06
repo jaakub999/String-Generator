@@ -89,6 +89,18 @@ public class Service {
         return result;
     }
 
+    public String generatePet(String pet) {
+        String result = null;
+
+        if (pet.equals(Pet.CAT.getEng()) || pet.equals(Pet.CAT.getPl()))
+            result = faker.cat().name();
+
+        else if (pet.equals(Pet.DOG.getEng()) || pet.equals(Pet.DOG.getPl()))
+            result = faker.dog().name();
+
+        return result;
+    }
+
     public String generateOther(String other) {
         String result = null;
 
